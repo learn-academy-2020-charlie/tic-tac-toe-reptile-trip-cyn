@@ -46,7 +46,6 @@ class App extends Component{
           value = { value }
           index = { index }
           key = { index }
-          markBox = { this.markBox }
         />
       )
     })
