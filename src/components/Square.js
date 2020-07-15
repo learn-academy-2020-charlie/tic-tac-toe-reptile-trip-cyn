@@ -6,8 +6,7 @@ class Square extends Component{
 
   handleClick = () => {
     this.props.markBox(this.props.index)
-
-
+    
   }
 
   render(){
