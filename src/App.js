@@ -42,10 +42,12 @@ class App extends Component{
         //Need to update the players answer array
         
         //Create a new variable that is the updated version of the player's answer arrray. We can use aray.push
-        let updatedArray = player1AnswerArray.slice()
-        updatedArray.push(index)
+        let updatedArray1 = player1AnswerArray.slice()
+        updatedArray1.push(index)
         //setState on the answer array for official update
-        this.setState({ player1AnswerArray: updatedArray })
+        this.setState({ player1AnswerArray: updatedArray1 })
+
+        console.log({player1AnswerArray})
 
         //check to see if player arrays have winning set   
         if( player1AnswerArray.includes(0 && 1 && 2) || 
@@ -56,48 +58,52 @@ class App extends Component{
             player1AnswerArray.includes(2 && 5 && 8) ||  
             player1AnswerArray.includes(0 && 4 && 8) ||  
             player1AnswerArray.includes(2 && 4 && 7)
-           ){
+          ){
               alert("Player 1, you are the winner!") 
             //lock the board
               document.getElementById("board").style.pointerEvents = "none";
-            }
+           } //end of player 1 logic
       //if its Players2 turn, "O"
-      else if(players[0] === "Player 2"){
-        let newSquares2 = squares.slice()
-        newSquares2[index] = <FaCircle />
-        this.setState({ squares: newSquares2 })
+      } else if (players[0] === "Player 2") {
+          let newSquares2 = squares.slice()
+          newSquares2[index] = <FaCircle />
+          this.setState({ squares: newSquares2 })
 
-        //Create a new variable that is the updated version of the player's answer arrray. We can use aray.push
-        let updatedArray = player2AnswerArray.slice()
-        updatedArray.push(index)
-        //setState on the answer array for official update
-        this.setState({ player2AnswerArray: updatedArray })
+          //Create a new variable that is the updated version of the player's answer arrray. We can use aray.push
+          let updatedArray2 = player2AnswerArray.slice()
+          updatedArray2.push(index)
+          //setState on the answer array for official update
+          this.setState({ player2AnswerArray: updatedArray2 })
 
-         //check to see if player arrays have winning set   
-         if( player2AnswerArray.includes(0 && 1 && 2) ||
-             player2AnswerArray.includes(3 && 4 && 5) ||  
-             player2AnswerArray.includes(6 && 7 && 8) ||  
-             player2AnswerArray.includes(0 && 3 && 6) ||  
-             player2AnswerArray.includes(1 && 4 && 7) ||  
-             player2AnswerArray.includes(2 && 5 && 8) ||  
-             player2AnswerArray.includes(0 && 4 && 8) ||  
-             player2AnswerArray.includes(2 && 4 && 7)  
-         ){
-            alert ("Player 2, you are the winner!")
-            //lock the board
-            document.getElementById("board").style.pointerEvents = "none";
-          }
+          console.log({player2AnswerArray})
+
+          //check to see if player arrays have winning set   
+          if( player2AnswerArray.includes(0 && 1 && 2) ||
+              player2AnswerArray.includes(3 && 4 && 5) ||  
+              player2AnswerArray.includes(6 && 7 && 8) ||  
+              player2AnswerArray.includes(0 && 3 && 6) ||  
+              player2AnswerArray.includes(1 && 4 && 7) ||  
+              player2AnswerArray.includes(2 && 5 && 8) ||  
+              player2AnswerArray.includes(0 && 4 && 8) ||  
+              player2AnswerArray.includes(2 && 4 && 7)  
+            ){
+                alert ("Player 2, you are the winner!")
+                //lock the board
+                document.getElementById("board").style.pointerEvents = "none";
+              } 
+        } //end of player 2 logic
+        
       //change turns after every turn 
       let newPlayers = players.slice()
       newPlayers.reverse()
       this.setState({ players: newPlayers })
+    
+    //ends typeof conditional for logic to run
     } else {
         alert("That spot has already been marked.")
       }      
-    }
-  } 
-}  
-
+  }
+     
   render(){
     //create a new variable that holds the array that map creates
     //map will iterate through this.state.squares array
