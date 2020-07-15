@@ -3,3 +3,16 @@
   width: 100px;
   border: 2px solid black;
 }
+
+#squaretext{
+  text-align: center;
+  padding: 40px;
+}
+
+#board{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 320px;
+  height: 300px
+}
