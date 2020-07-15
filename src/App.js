@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Square from './components/Square'
 import './App.css'
+import { FaTimes } from 'react-icons/fa';
+import { FaCircle } from 'react-icons/fa';
 
 class App extends Component{
   constructor(props){
     super(props)
     this.state = {
-      squares: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      squares: ["?", "?", "?", "?", "?", "?", "?", "?", "?"],
       players: ["Player 1", "Player 2"]
     }
   }
@@ -21,13 +23,13 @@ class App extends Component{
     //if its Players1 turn, "X"
     if(players[0] === "Player 1"){
       let newSquares1 = squares.slice()
-      newSquares1[index] = "X"
+      newSquares1[index] = <FaTimes />
       this.setState({ squares: newSquares1 })
     }
     //if its Players2 turn, "O"
-    else if(players[1] === "Player 2"){
+    else if(players[0] === "Player 2"){
       let newSquares2 = squares.slice()
-      newSquares2[index] = "O"
+      newSquares2[index] = <FaCircle />
       this.setState({ squares: newSquares2 })
     }
     //change turns after every turn 
@@ -46,6 +48,7 @@ class App extends Component{
           value = { value }
           index = { index }
           key = { index }
+          markBox = { this.markBox }
         />
       )
     })
@@ -63,3 +66,5 @@ class App extends Component{
   }
 }
 export default App
+
+//delete this

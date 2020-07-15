@@ -6,8 +6,9 @@ class Square extends Component{
 
   handleClick = () => {
     this.props.markBox(this.props.index)
+    
   }
-  
+
   render(){
     return(
       <React.Fragment>
@@ -22,3 +23,5 @@ class Square extends Component{
   }
 }
 export default Square
+
+
