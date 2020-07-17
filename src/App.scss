@@ -1,5 +1,8 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: rgb(23, 215, 100);
+@mixin myFlex {
+  
+} 
 
 #square{
   height: 100px;
@@ -13,9 +16,7 @@ $primary-color: rgb(23, 215, 100);
 }
 
 #board{
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  @include 
   width: 320px;
   height: 300px
 }
