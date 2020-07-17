@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Square from './components/Square'
-import './App.css'
+import './App.scss'
 import { FaTimes } from 'react-icons/fa';
 import { FaCircle } from 'react-icons/fa';
 
@@ -38,24 +38,34 @@ class App extends Component{
         //ends typeof conditional for logic to run
         } else {
           alert("That spot has already been marked.")
-          }      
+          } 
+      console.log("Method markBox finished running");
     } 
   }
 
   updatePlayer1Answers = (index) => {
-    let { player1AnswerArray } = this.state
-    let updatedArray1 = player1AnswerArray.slice()
-    updatedArray1.push(index)
-    //setState on the answer array for official update
-    this.setState({ player1AnswerArray: updatedArray1 })
+    let { player1AnswerArray, players } = this.state
+    if (players[0] === "Player 1") {
+      let updatedArray1 = player1AnswerArray.slice()
+      updatedArray1.push(index)
+      //setState on the answer array for official update
+      this.setState({ player1AnswerArray: updatedArray1 })
+      console.log("Method updatePlayer1Answers finished running")
+    }
+    setTimeout(() => {console.log("Method updatePlayer1Answers finished running")
+    console.log("Player 1 Answer Array (in method) is now: " + this.state.player1AnswerArray);}, 4000)
   }
 
   updatePlayer2Answers = (index) => {
-    let { player2AnswerArray } = this.state
-    let updatedArray2 = player2AnswerArray.slice()
-    updatedArray2.push(index)
-    //setState on the answer array for official update
-    this.setState({ player2AnswerArray: updatedArray2 })
+    let { player2AnswerArray, players } = this.state
+    if (players[0] === "Player 2") {
+      let updatedArray2 = player2AnswerArray.slice()
+      updatedArray2.push(index)
+      //setState on the answer array for official update
+      this.setState({ player2AnswerArray: updatedArray2 })
+    }
+    console.log("Method updatePlayer2Answers finished running")
+    console.log("Player 2 Answer Array (after method) is now: " + this.state.player2AnswerArray);
   }
 
   reverseTurns = () => {
@@ -63,9 +73,14 @@ class App extends Component{
     let newPlayers = players.slice()
     newPlayers.reverse()
     this.setState({ players: newPlayers })
+
+    console.log("Method reverseTurns finished running")
+
   }
 
   checkPlayer1Win = () => {
+    console.log("player1AnswerArray is: " + this.state.player1AnswerArray);
+
     let { player1AnswerArray } = this.state
         //check to see if player arrays have winning set   
         if((player1AnswerArray.includes(0) && 
@@ -100,10 +115,16 @@ class App extends Component{
              player1AnswerArray.includes(4) && 
              player1AnswerArray.includes(6))
           ){
-              alert("Player 1, you are the winner!") 
             //lock the board
               document.getElementById("board").style.pointerEvents = "none";
+              console.log("Board is locked (in player 1 method)");
+            //Say that player 1 has won
+              alert("Player 1, you are the winner!")
+              console.log("Alert for Player1Win has run"); 
            } //end of player 1 logic
+    
+    console.log("Method checkPlayer1Win finished running")
+
   }
 
   checkPlayer2Win = () => {
@@ -141,17 +162,22 @@ class App extends Component{
              player2AnswerArray.includes(4) && 
              player2AnswerArray.includes(6))
           ){
-              alert("Player 2, you are the winner!") 
             //lock the board
               document.getElementById("board").style.pointerEvents = "none";
+              console.log("Board is locked (in player 2 method)");
+            //tell them that Player 2 has won
+              alert("Player 2, you are the winner!")
+              console.log("Alert for PlayerWin has run");  
            } //end of player 2 logic
+
+    console.log("Method updatePlayer2Answers finished running")
+
   }
-
-
      
   render(){
-    console.log(this.state.player1AnswerArray);
-    console.log(this.state.player2AnswerArray);
+    console.log("Player 1 Answer Array (in render) is now: " + this.state.player1AnswerArray);
+    console.log("Player 2 Answer Array (in render) is now: " + this.state.player2AnswerArray);
+
     //create a new variable that holds the array that map creates
     //map will iterate through this.state.squares array
     let board = this.state.squares.map((value, index) => {
